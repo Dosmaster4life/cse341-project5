@@ -1,0 +1,39 @@
+{
+    "realtor1": {
+        "firstName": "Blake",
+        "lastName": "King",
+        "email": "BlakeKing@fakemail.com",
+        "phone": "555-555-5555",
+        "city": "New York",
+        "state": "NY",
+        "zip": "10001"
+    },
+    "realtor2": {
+        "firstName": "Blain",
+        "lastName": "Gerald",
+        "email": "BlainGerald@fakemail.com",
+        "phone": "111-111-1111",
+        "city": "Austin",
+        "state": "TX",
+        "zip": "78701"
+        
+    },
+    "realtor3": {
+        "firstName": "Blight",
+        "lastName": "Wattson",
+        "email": "BlightWattson@fakemail.com",
+        "phone": "333-333-3333",
+        "city": "San Francisco",
+        "state": "CA",
+        "zip": "43293"
+    },
+    "realtor4": {
+        "firstName": "Blaire",
+        "lastName": "Gordon",
+        "email": "BlairGordan@fakeemail.com",
+        "phone": "444-444-4444",
+        "city": "Seattle",
+        "state": "WA",
+        "zip": "98101"
+    }
+    
