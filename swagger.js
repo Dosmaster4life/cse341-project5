@@ -6,7 +6,7 @@ const doc = {
     description: 'Use the Realtor API to manage your realtors.'
   },
   host: 'localhost:10000',
-  schemes: ['http']
+  schemes: ['realtorzone.onrender.com']
 };
 
 const outputFile = './swagger.json';
