@@ -1,7 +1,7 @@
 
 // localhost
 ### Create Realtor
-POST http://localhost:10000/realtors/ HTTP/1.1
+POST http://localhost:10000/realtors HTTP/1.1
 Content-Type: application/json
 
 {
@@ -15,7 +15,7 @@ Content-Type: application/json
 }
 
 ### Edit Realtor
-PUT http://localhost:10000/realtors/ HTTP/1.1 
+PUT http://localhost:10000/realtors HTTP/1.1 
 content-type: application/json
 
 {
@@ -32,7 +32,7 @@ content-type: application/json
 DELETE http://localhost:10000/realtors/63320f8a91a6228434acc521 HTTP/1.1
 
 ### Get Realtors
-GET http://localhost:10000/realtors/ HTTP/1.1
+GET http://localhost:10000/realtors HTTP/1.1
 
 ### Get Realtor by id
 
@@ -46,7 +46,7 @@ GET http://localhost:10000/realtors/63320f8a91a6228434acc521 HTTP/1.1
 
 
 ### Create Realtor
-POST https://realtorzone.onrender.com/realtors/ HTTP/1.1
+POST https://realtorzone.onrender.com/realtors HTTP/1.1
 Content-Type: application/json
 
 {
@@ -77,7 +77,7 @@ content-type: application/json
 DELETE https://realtorzone.onrender.com/realtors/63320f8a91a6228434acc521 HTTP/1.1
 
 ### Get Realtors
-GET https://realtorzone.onrender.com/realtors/ HTTP/1.1
+GET https://realtorzone.onrender.com/realtors HTTP/1.1
 
 ### Get Realtor by id
 
