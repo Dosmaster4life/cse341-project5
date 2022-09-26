@@ -38,7 +38,7 @@ const createRealtor = async (req, res) => {
       state: req.body.state,
       zip: req.body.zip
     };
-    if (req.body.firstName != null &! req.body.lastName == null &! req.body.email == null &! req.body.phone == null &! req.body.city == null &! req.body.state == null &! req.body.zip == null) {
+    if (req.body.firstName != null && req.body.lastName != null && req.body.email != null && req.body.phone != null && req.body.city != null && req.body.state != null && req.body.zip != null) {
       const response = await mongodb.getDatabase().db('realtors').collection('realtors').insertOne(realtor);
       if (response.acknowledged ) {
         res.status(201).json(response);
