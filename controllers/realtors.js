@@ -2,7 +2,7 @@ const mongodb = require('../database/connect');
 const ObjectId = require('mongodb').ObjectId;
 
 const getAll = async (req, res) => {
-  const data = await mongodb.getDatabase().db().collection('realtors').find();
+  const data = await mongodb.getDatabase().db('realtors').collection('realtors').find();
   data.toArray().then((lists) => {
     res.setHeader('Content-Type', 'application/json');
     res.status(200).json(lists);
@@ -13,7 +13,7 @@ const getSingle = async (req, res) => {
   const realtorId = new ObjectId(req.params.id);
   const data = await mongodb
     .getDatabase()
-    .db()
+    .db('realtors')
     .collection('realtors')
     .find({ _id: realtorId });
  data.toArray().then((lists) => {
@@ -32,7 +32,7 @@ const createRealtor = async (req, res) => {
     state: req.body.state,
     zip: req.body.zip
   };
-  const response = await mongodb.getDatabase().db().collection('realtors').insertOne(realtor);
+  const response = await mongodb.getDatabase().db('realtors').collection('realtors').insertOne(realtor);
   if (response.acknowledged) {
     res.status(201).json(response);
   } else {
@@ -54,7 +54,7 @@ const updateRealtor = async (req, res) => {
   };
   const response = await mongodb
     .getDatabase()
-    .db()
+    .db('realtors')
     .collection('realtors')
     .replaceOne({ _id: ID }, realtor);
   console.log(response);
@@ -64,7 +64,7 @@ const updateRealtor = async (req, res) => {
 
 const deleteRealtor = async (req, res) => {
   const ID = new ObjectId(req.params.id);
-  const response = await mongodb.getDatabase().db().collection('realtors').deleteOne({ _id: ID }, true);
+  const response = await mongodb.getDatabase().db('realtors').collection('realtors').deleteOne({ _id: ID }, true);
   console.log(response);
  response.deletedCount > 0 ? res.status(204).send(): res.status(500).json(response.error || 'Error occurred while deleting the realtor.');
 };
