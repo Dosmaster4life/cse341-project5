@@ -87,7 +87,7 @@ const deleteRealtor = async (req, res) => {
     const ID = new ObjectId(req.params.id);
     const response = await mongodb.getDatabase().db('realtors').collection('realtors').deleteOne({ _id: ID }, true);
     console.log(response);
-   response.deletedCount > 0 ? res.status(204).send(): res.status(500).json(response.error || 'Error occurred while deleting the realtor.');
+   response.deletedCount > 0 ? res.status(200).send(): res.status(500).json(response.error || 'Error occurred while deleting the realtor.');
   }catch(e) {
   }
   res.status(500).json(response.error || 'Error occurred while deleting the realtor.');
