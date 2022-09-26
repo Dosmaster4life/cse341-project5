@@ -50,7 +50,7 @@ const createRealtor = async (req, res) => {
     }
    
   }catch(e) {
-    res.status(500).json(response.error || 'Error occured while creating realtor. Please check your input and try again.');
+    res.status(500).json('Error occured while creating realtor. Please check your input and try again.');
   }
   
   
