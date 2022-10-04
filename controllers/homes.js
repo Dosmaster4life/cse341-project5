@@ -29,17 +29,15 @@ const getSingle = async (req, res) => {
 
 const createHome = async (req, res) => {
   try {
-    const realtor = {
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
-      email: req.body.email,
-      phone: req.body.phone,
-      city: req.body.city,
-      state: req.body.state,
-      zip: req.body.zip
+    const home = {
+        sellerFirstName: req.body.sellerFirstName,
+        sellerLastName: req.body.sellerLastName,
+        address: req.body.address,
+        realtorName: req.body.realtorName,
+        realtorPhone: req.body.realtorPhone
     };
-    if (req.body.firstName != null && req.body.lastName != null && req.body.email != null && req.body.phone != null && req.body.city != null && req.body.state != null && req.body.zip != null) {
-      const response = await mongodb.getDatabase().db('realtors').collection('homes').insertOne(realtor);
+    if (req.body.sellerFirstName != null && req.body.sellerLastName != null && req.body.address != null && req.body.realtorName != null && req.body.realtorPhone != null) {
+      const response = await mongodb.getDatabase().db('realtors').collection('homes').insertOne(home);
       if (response.acknowledged ) {
         res.status(201).json(response);
       } else {
@@ -59,7 +57,7 @@ const createHome = async (req, res) => {
 const updateHome = async (req, res) => {
   try {
     const ID = new ObjectId(req.params.id);
-    const realtor = {
+    const home = {
       sellerFirstName: req.body.sellerFirstName,
       sellerLastName: req.body.sellerLastName,
       address: req.body.address,
@@ -70,7 +68,7 @@ const updateHome = async (req, res) => {
       .getDatabase()
       .db('realtors')
       .collection('homes')
-      .replaceOne({ _id: ID }, realtor);
+      .replaceOne({ _id: ID }, home);
     console.log(response);
     response.modifiedCount > 0 ? res.status(204).send(): res.status(500).json(response.error || 'Error occurred while updating the home.');
   }catch(e) {

@@ -3,10 +3,10 @@ const swaggerAutogen = require('swagger-autogen')();
 const doc = {
   info: {
     title: 'Realtor API',
-    description: 'Use the Realtor API to manage your realtors.'
+    description: 'Use the Realtor API to manage your realtors and homes.'
   },
-  host: 'realtorzone.onrender.com',
-  schemes: ['https']
+  host: 'localhost:10000',
+  schemes: ['http']
 };
 
 const outputFile = './swagger.json';
