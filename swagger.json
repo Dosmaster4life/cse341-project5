@@ -5,7 +5,7 @@
     "description": "Use the Realtor API to manage your realtors and homes.",
     "version": "1.0.0"
   },
-  "host": "https://realtorzone.onrender.com",
+  "host": "realtorzone.onrender.com",
   "basePath": "/",
   "schemes": [
     "https"
