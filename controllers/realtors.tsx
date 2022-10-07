@@ -1,5 +1,5 @@
 
-const ObjectId2 = require('mongodb').ObjectId2;
+const ObjectId2 = require('mongodb').ObjectId;
 const mongodb2 = require('../database/connect.tsx');
 const getAll = async (req, res) => {
   const data = await mongodb2.getDatabase().db('realtors').collection('realtors').find();
@@ -11,6 +11,7 @@ const getAll = async (req, res) => {
 
 const getSingle = async (req, res) => {
   try {
+   
     const realtorId = new ObjectId2(req.params.id);
     const data = await mongodb2
       .getDatabase()
@@ -22,7 +23,7 @@ const getSingle = async (req, res) => {
       res.status(200).json(lists[0]);
     });
   }catch(e) {
-    res.status(500).json(Response.error || 'Error occured while retrieving realtor.');
+    res.status(500).json( 'Error occured while retrieving realtor.');
   }
   
 };
@@ -43,7 +44,7 @@ const createRealtor = async (req, res) => {
       if (response.acknowledged ) {
         res.status(201).json(response);
       } else {
-        res.status(500).json(response.error || 'Error occured while creating realtor. Please check your input and try again.');
+        res.status(500).json('Error occured while creating realtor. Please check your input and try again.');
       }
     }else {
       res.status(500).json('Error occured while creating realtor. Please check your input and try again.');
@@ -73,10 +74,10 @@ const updateRealtor = async (req, res) => {
       .db('realtors')
       .collection('realtors')
       .replaceOne({ _id: ID }, realtor);
-    console.log(response);
+  
     response.modifiedCount > 0 ? res.status(204).send(): res.status(500).json(response.error || 'Error occurred while updating the realtor.');
   }catch(e) {
-    res.status(500).json(Response.error || 'Error occurred while updating the realtor.');
+    res.status(500).json('Error occurred while updating the realtor.');
   }
   
   
@@ -86,11 +87,11 @@ const deleteRealtor = async (req, res) => {
   try {
     const ID = new ObjectId2(req.params.id);
     const response = await mongodb2.getDatabase().db('realtors').collection('realtors').deleteOne({ _id: ID }, true);
-    console.log(response);
+
    response.deletedCount > 0 ? res.status(200).send(): res.status(500).json(response.error || 'Error occurred while deleting the realtor.');
   }catch(e) {
   }
-  res.status(500).json(Response.error || 'Error occurred while deleting the realtor.');
+  res.status(500).json('Error occurred while deleting the realtor.');
  
 };
 
