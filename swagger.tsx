@@ -5,7 +5,7 @@ const doc = {
     title: 'Realtor API',
     description: 'Use the Realtor API to manage your realtors and homes.'
   },
-  host: 'https://realtorzone.onrender.com',
+  host: 'realtorzone.onrender.com',
   schemes: ['https']
 };
 
