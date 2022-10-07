@@ -35,7 +35,7 @@ app.get('/oauth-callback', async (request, response) => {
                 message: 'Unauthorized'
                 });
         } 
-        return response.redirect('http://localhost:10000/loggedin?' + access_token);
+        return response.redirect('https://realtorzone.onrender.com/api-docs' + access_token);
 
     });
 
