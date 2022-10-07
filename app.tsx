@@ -17,11 +17,11 @@ app.use(express.json());
 
 const github_oath = 'https://github.com/login/oauth/authorize?client_id=';
 
-let code = "";
+
 
 
 app.get('/oauth-callback', async (request, response) => {
-     code = request.query.code;
+     const code = request.query.code;
     
 
     const body = {

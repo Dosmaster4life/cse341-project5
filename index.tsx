@@ -1,11 +1,10 @@
-//const express = require('express');
-const router5 = express.Router();
+const express7 = require('express');
+const router5 = express7.Router();
 
 
 
 router5.use('/', require('./swagger'));
 router5.use('/realtors',require('./realtors'));
-router5.use('/auth',require('./auth'));
 
 
 
