@@ -1,5 +1,5 @@
 
-const ObjectId = require('mongodb').ObjectId;
+const ObjectId2 = require('mongodb').ObjectId2;
 const mongodb2 = require('../database/connect.tsx');
 const getAll = async (req, res) => {
   const data = await mongodb2.getDatabase().db('realtors').collection('realtors').find();
@@ -11,7 +11,7 @@ const getAll = async (req, res) => {
 
 const getSingle = async (req, res) => {
   try {
-    const realtorId = new ObjectId(req.params.id);
+    const realtorId = new ObjectId2(req.params.id);
     const data = await mongodb2
       .getDatabase()
       .db('realtors')
@@ -58,7 +58,7 @@ const createRealtor = async (req, res) => {
 
 const updateRealtor = async (req, res) => {
   try {
-    const ID = new ObjectId(req.params.id);
+    const ID = new ObjectId2(req.params.id);
     const realtor = {
       firstName: req.body.firstName,
       lastName: req.body.lastName,
@@ -84,7 +84,7 @@ const updateRealtor = async (req, res) => {
 
 const deleteRealtor = async (req, res) => {
   try {
-    const ID = new ObjectId(req.params.id);
+    const ID = new ObjectId2(req.params.id);
     const response = await mongodb2.getDatabase().db('realtors').collection('realtors').deleteOne({ _id: ID }, true);
     console.log(response);
    response.deletedCount > 0 ? res.status(200).send(): res.status(500).json(response.error || 'Error occurred while deleting the realtor.');
