@@ -1,7 +1,7 @@
-const express = require('express');
-const router = express.Router();
+const express7 = require('express');
+const router = express7.Router();
 
-const realtors_Controller = require('../controllers/realtors');
+const realtors_Controller = require('../controllers/realtors.tsx');
 
 router.get('/:id', realtors_Controller.getSingle);
 router.get('/', realtors_Controller.getAll);

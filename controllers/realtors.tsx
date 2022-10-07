@@ -1,8 +1,8 @@
-const mongodb = require('../database/connect');
-const ObjectId = require('mongodb').ObjectId;
 
+const ObjectId = require('mongodb').ObjectId;
+const mongodb2 = require('../database/connect.tsx');
 const getAll = async (req, res) => {
-  const data = await mongodb.getDatabase().db('realtors').collection('realtors').find();
+  const data = await mongodb2.getDatabase().db('realtors').collection('realtors').find();
   data.toArray().then((lists) => {
     res.setHeader('Content-Type', 'application/json');
     res.status(200).json(lists);
@@ -12,7 +12,7 @@ const getAll = async (req, res) => {
 const getSingle = async (req, res) => {
   try {
     const realtorId = new ObjectId(req.params.id);
-    const data = await mongodb
+    const data = await mongodb2
       .getDatabase()
       .db('realtors')
       .collection('realtors')
@@ -22,7 +22,7 @@ const getSingle = async (req, res) => {
       res.status(200).json(lists[0]);
     });
   }catch(e) {
-    res.status(500).json(response.error || 'Error occured while retrieving realtor.');
+    res.status(500).json(Response.error || 'Error occured while retrieving realtor.');
   }
   
 };
@@ -39,7 +39,7 @@ const createRealtor = async (req, res) => {
       zip: req.body.zip
     };
     if (req.body.firstName != null && req.body.lastName != null && req.body.email != null && req.body.phone != null && req.body.city != null && req.body.state != null && req.body.zip != null) {
-      const response = await mongodb.getDatabase().db('realtors').collection('realtors').insertOne(realtor);
+      const response = await mongodb2.getDatabase().db('realtors').collection('realtors').insertOne(realtor);
       if (response.acknowledged ) {
         res.status(201).json(response);
       } else {
@@ -68,7 +68,7 @@ const updateRealtor = async (req, res) => {
       state: req.body.state,
       zip: req.body.zip
     };
-    const response = await mongodb
+    const response = await mongodb2
       .getDatabase()
       .db('realtors')
       .collection('realtors')
@@ -76,7 +76,7 @@ const updateRealtor = async (req, res) => {
     console.log(response);
     response.modifiedCount > 0 ? res.status(204).send(): res.status(500).json(response.error || 'Error occurred while updating the realtor.');
   }catch(e) {
-    res.status(500).json(response.error || 'Error occurred while updating the realtor.');
+    res.status(500).json(Response.error || 'Error occurred while updating the realtor.');
   }
   
   
@@ -85,12 +85,12 @@ const updateRealtor = async (req, res) => {
 const deleteRealtor = async (req, res) => {
   try {
     const ID = new ObjectId(req.params.id);
-    const response = await mongodb.getDatabase().db('realtors').collection('realtors').deleteOne({ _id: ID }, true);
+    const response = await mongodb2.getDatabase().db('realtors').collection('realtors').deleteOne({ _id: ID }, true);
     console.log(response);
    response.deletedCount > 0 ? res.status(200).send(): res.status(500).json(response.error || 'Error occurred while deleting the realtor.');
   }catch(e) {
   }
-  res.status(500).json(response.error || 'Error occurred while deleting the realtor.');
+  res.status(500).json(Response.error || 'Error occurred while deleting the realtor.');
  
 };
 

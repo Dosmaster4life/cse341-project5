@@ -21,7 +21,7 @@ const initDatabase = (callback) => {
 
 const getDatabase = () => {
   if (!database) {
-    throw error('Database not connected');
+    throw Error('Database not connected');
   }
   return database;
 };

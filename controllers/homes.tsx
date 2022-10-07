@@ -1,7 +1,7 @@
-const mongodb = require('../database/connect');
-const ObjectId = require('mongodb').ObjectId;
+//const mongodb = require('../database/connect.tsx');
 
-const getAll = async (req, res) => {
+
+const getAllI = async (req, res) => {
   const data = await mongodb.getDatabase().db('realtors').collection('homes').find();
   data.toArray().then((lists) => {
     res.setHeader('Content-Type', 'application/json');
@@ -9,7 +9,7 @@ const getAll = async (req, res) => {
   });
 };
 
-const getSingle = async (req, res) => {
+const getSingleI = async (req, res) => {
   try {
     const realtorId = new ObjectId(req.params.id);
     const data = await mongodb
@@ -22,12 +22,16 @@ const getSingle = async (req, res) => {
       res.status(200).json(lists[0]);
     });
   }catch(e) {
-    res.status(500).json(response.error || 'Error occured while retrieving home.');
+    res.status(500).json(res.error || 'Error occured while retrieving home.');
   }
   
 };
 
 const createHome = async (req, res) => {
+  // check if user is authenticated
+  if (req.isAuthenticated()) {
+
+  
   try {
     const home = {
         sellerFirstName: req.body.sellerFirstName,
@@ -50,6 +54,9 @@ const createHome = async (req, res) => {
   }catch(e) {
     res.status(500).json('Error occured while creating home. Please check your input and try again.');
   }
+}else {
+  res.status(401).json('Unauthorized');
+}
   
   
 };
@@ -72,7 +79,7 @@ const updateHome = async (req, res) => {
     console.log(response);
     response.modifiedCount > 0 ? res.status(204).send(): res.status(500).json(response.error || 'Error occurred while updating the home.');
   }catch(e) {
-    res.status(500).json(response.error || 'Error occurred while updating the home.');
+    res.status(500).json(res.error || 'Error occurred while updating the home.');
   }
   
   
@@ -86,14 +93,15 @@ const deleteHome = async (req, res) => {
    response.deletedCount > 0 ? res.status(200).send(): res.status(500).json(response.error || 'Error occurred while deleting the home.');
   }catch(e) {
   }
-  res.status(500).json(response.error || 'Error occurred while deleting the home.');
+  res.status(500).json(res.error || 'Error occurred while deleting the home.');
  
 };
 
 module.exports = {
-  getAll,
-  getSingle,
+  getAllI,
+  getSingleI,
   createHome,
   deleteHome,
   updateHome
 };
+
