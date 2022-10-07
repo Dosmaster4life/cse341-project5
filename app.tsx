@@ -47,7 +47,7 @@ app.get('/auth', (request, response) => {
 });
 app.get('/loggedin', async (request, response) => {
     const access_token = request.query.access_token;
-    console.log(access_token + "access token");
+   
 
 
     const data = await axios({
