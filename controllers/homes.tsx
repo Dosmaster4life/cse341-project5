@@ -1,8 +1,8 @@
-const mongodb = require('../database/connect.tsx');
-const ObjectId = require('mongodb').ObjectId;
+const mongodb5 = require('../database/connect.tsx');
+const ObjectId = require('mongodb5').ObjectId;
 
 const getAllI = async (req, res) => {
-  const data = await mongodb.getDatabase().db('realtors').collection('homes').find();
+  const data = await mongodb5.getDatabase().db('realtors').collection('homes').find();
   data.toArray().then((lists) => {
     res.setHeader('Content-Type', 'application/json');
     res.status(200).json(lists);
@@ -12,7 +12,7 @@ const getAllI = async (req, res) => {
 const getSingleI = async (req, res) => {
   try {
     const realtorId = new ObjectId(req.params.id);
-    const data = await mongodb
+    const data = await mongodb5
       .getDatabase()
       .db('realtors')
       .collection('homes')
@@ -41,7 +41,7 @@ const createHome = async (req, res) => {
         realtorPhone: req.body.realtorPhone
     };
     if (req.body.sellerFirstName != null && req.body.sellerLastName != null && req.body.address != null && req.body.realtorName != null && req.body.realtorPhone != null) {
-      const response = await mongodb.getDatabase().db('realtors').collection('homes').insertOne(home);
+      const response = await mongodb5.getDatabase().db('realtors').collection('homes').insertOne(home);
       if (response.acknowledged ) {
         res.status(201).json(response);
       } else {
@@ -71,7 +71,7 @@ const updateHome = async (req, res) => {
       realtorName: req.body.realtorName,
       realtorPhone: req.body.realtorPhone
     };
-    const response = await mongodb
+    const response = await mongodb5
       .getDatabase()
       .db('realtors')
       .collection('homes')
@@ -88,7 +88,7 @@ const updateHome = async (req, res) => {
 const deleteHome = async (req, res) => {
   try {
     const ID = new ObjectId(req.params.id);
-    const response = await mongodb.getDatabase().db('realtors').collection('homes').deleteOne({ _id: ID }, true);
+    const response = await mongodb5.getDatabase().db('realtors').collection('homes').deleteOne({ _id: ID }, true);
     console.log(response);
    response.deletedCount > 0 ? res.status(200).send(): res.status(500).json(response.error || 'Error occurred while deleting the home.');
   }catch(e) {
